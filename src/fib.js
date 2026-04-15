@@ -1,5 +1,3 @@
-const { indexOf } = require("../eslint.config");
-
 function fib(num) {
     if(!isValid(num)) {
         throw new Error("The input must be an integer. The minimum value is 1.")
