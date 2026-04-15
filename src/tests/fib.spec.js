@@ -1,4 +1,4 @@
-const fib = require("../fib");
+const { fib, fibRec } = require("../fib");
 
 describe("iterative", () => {
     test("fib exists", () => {
@@ -34,5 +34,42 @@ describe("iterative", () => {
         expect(fib(input)).toEqual([0, 1, 1, 2, 3, 5, 8, 13]);
         input = 20;
         expect(fib(input)).toEqual([0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181]);
-    })
+    });
 });
+
+describe("recursive", () => {
+    test("fibRec exists", () => {
+        expect(fibRec).toBeDefined();
+    });
+    test("fibRec is a function", () => {
+        expect(typeof(fibRec)).toBe('function');
+    });
+    test("fibRec returns something", () => {
+        let input = 2;
+        expect(fibRec(input)).toBeDefined();
+    });
+    test("fibRec throws an error if input is not an integer greater than 0", () => {
+        let input = {}
+        expect(() => { fibRec(input) }).toThrow();
+        input = -1;
+        expect(() => { fibRec(input) }).toThrow();
+        input = "a";
+        expect(() => { fibRec(input) }).toThrow();
+        input = [1, 2, 3];
+        expect(() => { fibRec(input) }).toThrow();
+    });
+    test("fibRec returns an array containing the first n numbers of the Fibonacci sequence", () => {
+        let input = 1;
+        expect(fibRec(input)).toEqual([0]);
+        input = 2;
+        expect(fibRec(input)).toEqual([0, 1]);
+        input = 3;
+        expect(fibRec(input)).toEqual([0, 1, 1]);
+        input = 5;
+        expect(fibRec(input)).toEqual([0, 1, 1, 2, 3]);
+        input = 8;
+        expect(fibRec(input)).toEqual([0, 1, 1, 2, 3, 5, 8, 13]);
+        input = 20;
+        expect(fibRec(input)).toEqual([0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181]);
+    });
+})
